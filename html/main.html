@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+	<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/css.css" />
+</head>
+<body>
+    
+    <div class="aui-container" id='book'>
+    	
+    </div>
+</body>
+<script type="text/x-dot-template" id='bookTpl'>
+	
+	{{ for (var i in it){ }}
+		{{ var item = it[i]; }}
+		<section class="aui-content" data-href="{{= item.href}}">
+		    <div class="aui-card-list">
+		        <div class="aui-card-list-header">
+		            	{{= item.title}}
+		        </div>
+		        <div class="aui-card-list-content">
+		            <img src="{{= item.img}}" class="img-w80" />
+		        </div>
+		        <div class="aui-card-list-footer">
+		        	<i class="aui-iconfont aui-icon-display">{{= item.read }}</i>
+		        </div>
+		    </div>
+		    </div>
+		</section>
+	{{ } }}
+    <div class="aui-card-list-footer aui-text-center">
+        		查看更多
+    </div>
+</script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/doT.min.js"></script>
+<script src="../script/jquery.min.js"></script>
+<script src="../script/layer/layer.js"></script>
+<script src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/init.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+    	get(server , function(ret){
+    		T('#bookTpl' , '#book' , ret.data);
+    	});
+    	$('#book').on('click' , 'section' , function(){
+    		get(server + '?r=cover&href=' +$(this).data('href') , function(data){
+    		alert(JSON.stringify(data.data.data));
+    			write(data.data , "fs://test.md");
+    		})
+    	});
+    };
+</script>
+</html>

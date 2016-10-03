@@ -1,0 +1,38 @@
+.header-top{
+	height:55px;
+	width:100%;
+}
+.logo-left{
+	display:inline-block;
+}
+.logo-left a{
+	float: left;
+    margin-top: 12px;
+    margin-right: 24px;
+}
+.logo-left img{
+	vertical-align:top;
+	line-height:55px;
+	display:inline-block;
+}
+.m-navg-toggle:hover{
+	background:#ccc;
+}
+.logo-right{
+	text-align:center;
+	line-height:55px;
+}
+.logo-right i {
+	font-size:28px;
+}
+.logo-right i:hover{
+	color:#ccc;
+}
+.img-w80{
+	width:70% !important;
+	display:block;
+	margin:auto;
+}
+
+
+
