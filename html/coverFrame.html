@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/css.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+</head>
+<body>
+  	<div class="aui-hr"></div>
+  	<script src="../script/api.js"></script>
+  	<script src="../script/init.js"></script>
+  	<script src="../script/jquery.min.js"></script>
+  	<script src="../script/layer/layer.js"></script>
+  	<script src="../script/zepto.min.js"></script>
+  	<script>
+  		apiready = function(){
+  			var data = api.pageParam;
+  			var href = data.href ; 
+  			var dir = [] ;
+  			dirs = href.split("/");
+  			dir [0] = dirs [1];
+  			dir [1] = dirs [2];
+  			
+  			openReader(href ,dir);
+  			
+  			api.addEventListener({
+	              name:'choose_cover'
+            },function(ret,err){
+              	var href = ret.value.href ;
+              	dirs = href.split("/");
+  				dir [0] = dirs [1];
+  				dir [1] = dirs [2];
+  				openReader(href ,dir , true );
+            });
+  			
+  		}
+  	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+	<link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/css.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+</head>
+<body>
+  	<header class='header-top'>
+  		<div class="aui-container">
+  			<div class="aui-col-xs-2 logo-left" id="menu">
+  				<a href="#">
+  					<i class="aui-iconfont aui-icon-menu nav-menu" ></i>
+  				</a>
+  			</div>
+  			<div class='aui-col-xs-3'><span>&nbsp;</span></div>
+  			<div class='aui-col-xs-7 logo-right'>
+  				<a href="#">
+  					<img src="http://www.kancloud.cn/Static/home/image/15.png" height = '30' alt="" />
+  				</a>
+  			</div>
+  		</div>
+  	</header>
+  	<div class="aui-container" id="cover">
+       
+  	</div>
+  	<div class="aui-hr"></div>
+  	<script type="text/x-dot-template" id="coverTpl">
+  		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-list-in">
+		    	{{ for(var i in it){ }}
+		    	{{ var item = it[i]; }}
+			        <li class="aui-list-item" data-id = "{{= item.href}}">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">{{= item.text}}</div>
+			            </div>
+			        </li>
+		        {{ } }}
+		    </ul>
+		</div>
+  	</script>
+  	<script src="../script/api.js"></script>
+  	<script src="../script/init.js"></script>
+  	<script src="../script/jquery.min.js"></script>
+  	<script src="../script/layer/layer.js"></script>
+  	<script src="../script/zepto.min.js"></script>
+  	<script src="../script/doT.min.js"></script>
+  	<script>
+  		apiready = function(){
+  			var data = api.pageParam;
+  			openFrame('coverFrame' , './coverFrame.html' , data , 0 , 60 , api.winWidth , 999999999 );
+  			setTimeout(function(){
+  				var dirs = data.href.split("/");
+  				var dir = [] ;
+  				dir [0] = dirs [1];
+  				dir [1] = dirs [2];
+  				var json_path = dir [0] + "/" + dir [1] + "/cover.json";
+  				var json_data = read(json_path);
+  				var json = $api.strToJson(json_data);
+  				T("#coverTpl" , "#cover" , json);  
+  			}, 2000);
+			$('#menu').on("click" , function(){
+				openFrame("mulu" , "./mulu.html" , data , 0 , 60 );
+			});
+  		}
+  	</script>
+</body>
+</html>

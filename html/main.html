@@ -14,6 +14,11 @@
     <div class="aui-container" id='book'>
     	
     </div>
+    
+    <div class="aui-card-list-footer aui-text-center">
+        		查看更多
+    </div>
+      
 </body>
 <script type="text/x-dot-template" id='bookTpl'>
 	
@@ -34,9 +39,6 @@
 		    </div>
 		</section>
 	{{ } }}
-    <div class="aui-card-list-footer aui-text-center">
-        		查看更多
-    </div>
 </script>
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/doT.min.js"></script>
@@ -45,16 +47,27 @@
 <script src="../script/zepto.min.js"></script>
 <script type="text/javascript" src="../script/init.js"></script>
 <script type="text/javascript">
+   
     apiready = function(){
     	get(server , function(ret){
     		T('#bookTpl' , '#book' , ret.data);
     	});
     	$('#book').on('click' , 'section' , function(){
-    		get(server + '?r=cover&href=' +$(this).data('href') , function(data){
-    		alert(JSON.stringify(data.data.data));
-    			write(data.data , "fs://test.md");
-    		})
+    		openWin("coverWin" , "./coverWin.html" , {href : $(this).data('href')});
     	});
+    	var page = 2;
+    	api.addEventListener({
+		    name:'scrolltobottom',
+		    extra:{
+		        threshold:60            //设置距离底部多少距离时触发，默认值为0，数字类型
+		    }
+		}, function(ret, err){        
+		    getMore(server + "?page=" + page , function(data){
+		    	T('#bookTpl' , '#book' , data.data);
+		    	page ++ ;
+		    });
+		});
+    	
     };
 </script>
 </html>

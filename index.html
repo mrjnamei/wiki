@@ -13,13 +13,16 @@
 <body>
   	<header class='header-top'>
   		<div class="aui-container">
-  			<div class="aui-col-xs-10 logo-left">
+  			<div class="aui-col-xs-2 logo-left" id="openSlide">
+  				<a href="#">
+  					<i class="aui-iconfont aui-icon-menu nav-menu"></i>
+  				</a>
+  			</div>
+  			<div class='aui-col-xs-3'><span>&nbsp;</span></div>
+  			<div class='aui-col-xs-7 logo-right'>
   				<a href="#">
   					<img src="http://www.kancloud.cn/Static/home/image/15.png" height = '30' alt="" />
   				</a>
-  			</div>
-  			<div class='aui-col-xs-2 logo-right'>
-  				<i class="aui-iconfont aui-icon-menu nav-menu"></i>
   			</div>
   		</div>
   	</header>
@@ -32,8 +35,9 @@
   	<script src="./script/zepto.min.js"></script>
   	<script>
   		apiready = function(){
-  			 __init();
-  		}
+  			__init();
+  			
+	   }
   	</script>
 </body>
 </html>
